@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_reject_wizard" model="ir.actions.act_window">
+        <field name="name">Rejection Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reject.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_reject_wizard_form" model="ir.ui.view">
+        <field name="name">reject.wizard.form</field>
+        <field name="model">reject.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="reject"/>
+                    </group>
+                    <footer>
+                        <button name="reject_action_button" string="Confirm" class="btn-primary" type="object"/>
+                        <button name="back_action" string="Cancel" class="btn-primary" type="object"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
