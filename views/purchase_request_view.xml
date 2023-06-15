@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <menuitem id="menu_purchase_root"
-              name="Purchase"
-              sequence="0"/>
-
-    <menuitem id="menu_purchase_request"
-              name="Purchase Requests"
-              parent="menu_purchase_root"
-              sequence="0"/>
-
-    <menuitem id="menu_purchase_orders"
-              name="Orders"
-              action="action_purchase"
-              parent="menu_purchase_request"
-              sequence="0"/>
-
-    <record id="action_purchase" model="ir.actions.act_window">
-        <field name="name">Purchase</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">purchase.request</field>
-        <field name="view_mode">tree,form</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create a Purchase Request!
-            </p>
-        </field>
-    </record>
-
     <record id="view_purchase_request_form" model="ir.ui.view">
         <field name="name">purchase.request.form</field>
         <field name="model">purchase.request</field>
@@ -43,22 +14,35 @@
                     <button name="draft" string="Reset to draft" type="object" states="cancel"/>
                     <button name="draft" string="Reset to draft" type="object" states="reject"/>
                     <button name="draft" string="Reset to draft" type="object" states="approve"/>
+                    <button name="action_po" string="Create a Purchase Order" type="object" states="approve"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="my_smart_button_action" string="My Smart Button" type="object"
+                                class="oe_highlight">
+                            <div class="o_stat_info">
+                                <field name="purchase_order_count" class="o_stat_value"/>
+                                <span class="_stat_text">Purchase Orders</span>
+                            </div>
+                        </button>
+                    </div>
                     <group>
                         <group>
+                            <field name="purchase_number"/>
                             <field name="name"/>
-                            <field name="start_date"/>
+                            <field name="user_id"/>
+                            <field name="date_start"/>
                         </group>
 
                         <group>
-                            <field name="end_date"/>
+                            <field name="partner_id"/>
+                            <field name="date_end"/>
                             <field name="reason"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Lines" name="order">
-                            <field name="order_line">
+                            <field name="order_line_ids">
                                 <tree editable="bottom">
                                     <field name="request_id" invisible="1"/>
                                     <field name="product_id"/>
@@ -73,12 +57,10 @@
                             </group>
                         </page>
 
-                        <page string="Rejection Reasons">
-
-                                <tree>
-                                    <field name="reason"/>
-                                </tree>
-
+                        <page string="Rejection Reasonsssssssssss">
+                            <group>
+                                <field name="reason" widget="many2many_tags"/>
+                            </group>
                         </page>
                     </notebook>
 
@@ -93,11 +75,37 @@
         <field name="arch" type="xml">
             <tree string="purchase">
                 <field name="name"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
                 <field name="sum_total"/>
             </tree>
         </field>
     </record>
+    <record id="action_purchase" model="ir.actions.act_window">
+        <field name="name">Purchase</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Purchase Request!
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_purchase_root"
+              name="Purchase"
+              sequence="0"/>
+
+    <menuitem id="menu_purchase_request"
+              name="Purchase Requests"
+              parent="menu_purchase_root"
+              sequence="0"/>
+
+    <menuitem id="menu_purchase_orders"
+              name="Orders"
+              action="action_purchase"
+              parent="menu_purchase_request"
+              sequence="0"/>
 
 </odoo>

@@ -1,7 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access.purchase.request,access_purchase_request,purchaseRequest.model_purchase_request,,1,1,1,1
+access.purchase.request,access_purchase_request,purchase_request.model_purchase_request,,1,1,1,1
 
-access.purchase.request.line,access_purchase_request_line,purchaseRequest.model_purchase_request_line,,1,1,1,1
+access.purchase.request.line,access_purchase_request_line,purchase_request.model_purchase_request_line,,1,1,1,1
 
-access.reject.wizard,access_reject_wizard,purchaseRequest.model_reject_wizard,,1,1,1,1
+access.reject.wizard,access_reject_wizard,purchase_request.model_reject_wizard,,1,1,1,1
+
+access.rejection.reason,access_rejection_reason,purchase_request.model_rejection_reason,,1,1,1,1
 

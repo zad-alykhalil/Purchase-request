@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchase_request">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure">
+                        <div class="row">
+                            <div>
+                                <h1 style="margin-top: 30px;">Purchase Request</h1>
+                                <h6>
+                                    <span t-field="o.user_id"/>
+                                </h6>
+                                <br></br>
+                                <br></br>
+                                <table class="table table-condensed"
+                                       style="border:1px solid !important; margin: 3px; padding: 4px;">
+
+                                    <tr style="border: 1px solid black !important;">
+                                        <td>
+                                            <span>
+                                                <strong>Request Number</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.purchase_number"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong>Name</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.name"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong>Vendor</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.partner_id"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong>Start Date</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.date_start"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong>End Date</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.date_end"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong>Rejection Reason</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.reason"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <strong>Total</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                <strong>:</strong>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.sum_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br></br>
+
+                        <t t-if="o.order_line_ids">
+                            <span>Purchase Requests</span>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th name="th_product_id" class="text_left">
+                                            <span>Product ID</span>
+                                        </th>
+
+                                        <th name="th_description" class="text_left">
+                                            <span>Product Name</span>
+                                        </th>
+
+                                        <th name="th_quantity" class="text_left">
+                                            <span>Qty</span>
+                                        </th>
+
+                                        <th name="cost_price" class="text_left">
+                                            <span>Price</span>
+                                        </th>
+
+                                        <th name="total" class="text_left">
+                                            <span>Total Price</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <t t-set="request_counter" t-value="0"/>
+                                <t t-foreach="o.order_line_ids" t-as="rec">
+                                    <t t-set="request_counter" t-value="request_counter + 1"/>
+                                    <tr>
+                                        <td>
+                                            <span t-field="rec.product_id"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="rec.description"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="rec.quantity"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="rec.cost_price"/>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="rec.total"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <br></br>
+                                <tr style="border: 1px solid white !important; padding: 20px;">
+                                    <td style="margin: 20px;">
+                                        <strong>Total Purchase Requests</strong>
+                                    </td>
+
+                                    <td>
+                                        <t t-esc="request_counter"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                    </div>
+                    <br></br>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
