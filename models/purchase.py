@@ -35,6 +35,11 @@ class PurchaseRequest(models.Model):
 
     purchase_order_count = fields.Integer(compute="_compute_purchase_order", )
 
+    @api.constrains('order_line_ids')
+    def create(self, vals):
+        print("record created")
+        return super(PurchaseRequest, self).create(vals)
+
     def _compute_purchase_order(self):
         for rec in self:
             order_count = self.env['purchase.order'].search_count([('origin', '=', rec.name)])

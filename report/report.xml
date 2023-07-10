@@ -4,8 +4,18 @@
             <field name="name">Purchase Request</field>
             <field name="model">purchase.request</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">purchaseRequest.report_purchase_request</field>
-            <field name="report_file">purchaseRequest.report_purchase_request</field>
+            <field name="report_name">purchase_request.report_purchase_request</field>
+            <field name="report_file">purchase_request.report_purchase_request</field>
+            <field name="binding_model_id" ref="model_purchase_request"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_purchase_requests_xlsx" model="ir.actions.report">
+            <field name="name">Purchase Request Excel</field>
+            <field name="model">purchase.request</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">purchase_request.report_purchase_request_xlsx</field>
+            <field name="report_file">purchase_request.report_purchase_request_xlsx</field>
             <field name="binding_model_id" ref="model_purchase_request"/>
             <field name="binding_type">report</field>
         </record>

@@ -8,7 +8,7 @@
     'sequence': -50,
     'summary': 'Purchase Request',
     'description': """Purchase Request System""",
-    'depends': ['base', 'product', 'sale'],
+    'depends': ['base', 'product', 'sale', 'report_xlsx'],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
